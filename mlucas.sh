@@ -40,8 +40,8 @@ fi
 if ! command -v make >/dev/null || ! command -v gcc >/dev/null; then
 	echo -e "Installing Make and the GNU C compiler"
 	echo -e "Please enter your password if prompted.\n"
-	sudo apt-get update -y
-	sudo apt-get install -y build-essential
+	apt-get update -y
+	apt-get install -y build-essential
 fi
 if [[ -n $CC ]] && ! command -v "$CC" >/dev/null; then
 	echo "Error: $CC is not installed." >&2
@@ -55,14 +55,14 @@ files=(/usr/include/gmp*.h)
 if ! ldconfig -p | grep -iq 'libgmp\.' || ! [[ -f ${files[0]} ]]; then
 	echo -e "Installing the GNU Multiple Precision (GMP) library"
 	echo -e "Please enter your password if prompted.\n"
-	sudo apt-get update -y
-	sudo apt-get install -y libgmp-dev
+	apt-get update -y
+	apt-get install -y libgmp-dev
 fi
 if ! ldconfig -p | grep -iq 'libhwloc\.' || ! [[ -f /usr/include/hwloc.h ]]; then
 	echo -e "Installing the Portable Hardware Locality (hwloc) library"
 	echo -e "Please enter your password if prompted.\n"
-	sudo apt-get update -y
-	sudo apt-get install -y libhwloc-dev
+	apt-get update -y
+	apt-get install -y libhwloc-dev
 fi
 TIME=$(echo "$TIME" | awk '{ printf "%g", $1 * 60 }')
 
